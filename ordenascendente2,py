@@ -1,0 +1,19 @@
+a=int(input("Digitar primer valor"))
+b=int(input("Digitar segundo valor"))
+c=int(input("Digitar tercer valor"))
+if a>b:
+    if a>c:
+        if b>c:
+            print(a,b,c)
+        else:
+            print(a,c,b)
+    else:
+        print(c,a,b)
+else:
+    if b>c:
+        if c>a:
+            print(b,c,a)
+        else:
+            print(b,a,c)
+    else:
+        print(c,b,a)                                
