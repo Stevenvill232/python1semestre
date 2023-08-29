@@ -1,3 +1,133 @@
+#Ejercicio 8 (ordenar la mitad del vector en forma ascendente y la otra mitad de forma descendente)
+print("Ejercicio 8 (ordenar la mitad del vector en forma ascendente y la otra mitad de forma descendente)")
+cantidad_datos=int(input("Cantidad de datos= "))
+a=[]
+for i in range(cantidad_datos):
+    a.append(int(input("Dato({})=".format(i))))
+
+i=0
+while i< (len(a)//2):
+    Menor=a[i]
+    pos_menor=i
+    j=i+1
+    while j< len(a)//2:
+        if a[j]<Menor:
+            Menor=a[j]
+            pos_menor=j
+        j+=1
+
+    aux_0=a[i]
+    a[i]=a[pos_menor]
+    a[pos_menor]=aux_0
+    i+=1
+
+i=len(a)//2
+while i < len(a)-1:
+    mayor=a[i]
+    pos_mayor=i
+    j=i+1
+    while j< len(a):
+        if a[j]>mayor:
+            mayor=a[j]
+            pos_mayor=j
+        j+=1
+
+    aux_1=a[i]
+    a[i]=a[pos_mayor]
+    a[pos_mayor]=aux_1
+    i+=1        
+
+for i in range(len(a)):
+    print("Posicion: ",i,"Dato= ",a[i])
+
+print("Fin algoritmo")
+
+#Ejercicio 9 (apartir de un vector formar otros dos, uno con los datos pares y otro con los primos, ordenarlos ascendente y descendente respectivamente)
+print("Ejercicio 9 (apartir de un vector formar otros dos, uno con los datos pares y otro con los primos, ordenarlos ascendente y descendente respectivamente)")
+cantidad_datos=int(input("Cantidad de datos= "))
+a=[]
+v_pares=[]
+v_primos=[]
+for i in range(cantidad_datos):
+    a.append(int(input("Dato({})=".format(i))))
+
+for i in range(len(a)):
+    if a[i]%2==0:
+        print(a[i],"es par")
+        dato_par= a[i] in v_pares
+        if dato_par==False:
+            v_pares.append(a[i])
+
+for i in range(len(a)):
+    c=1
+    div=0
+    while c<=a[i]:
+        if a[i]%c==0:
+            div+=1
+        c+=1
+
+    if div==2:
+        print(a[i],"Es primo")
+        dato_primo= a[i] in v_primos
+        if dato_primo== False:
+            v_primos.append(a[i])
+
+for i in range(len(v_pares)-1):
+    menor=v_pares[i]
+    pos_menor=i
+    j=i+1
+    while j< len(v_pares):
+        if v_pares[j]<menor:
+            menor=v_pares[j]
+            pos_menor=j
+        j+=1
+
+    aux_0=v_pares[i]
+    v_pares[i]=v_pares[pos_menor]
+    v_pares[pos_menor]=aux_0
+
+print("Vector con pares ordenado ascendentemente:",v_pares)
+for i in range(len(v_primos)-1):
+    mayor=v_primos[i]
+    pos_mayor=i
+    j=i+1
+    while j< len(v_primos):
+        if v_primos[j]>mayor:
+            mayor=v_primos[j]
+            pos_mayor=j
+        j+=1
+
+    aux_1=v_primos[i]
+    v_primos[i]=v_primos[pos_mayor]
+    v_primos[pos_mayor]=aux_1
+
+print("Vector con primos ordenados descendentemente:",v_primos)
+print("Fin algoritmo")
+#Ejercicio 10 (Se tiene vector con datos numericos ordenados y repetidos, mostrar los numeros y veces que se repiten, utilizar rompimiento de control)
+print("Ejercicio 10(Se tiene vector con datos numericos ordenados y repetidos, mostrar los numeros y veces que se repiten, utilizar rompimiento de control)")
+cantidad_datos=int(input("Cantidad de datos= "))
+a=[]
+for i in range(cantidad_datos):
+    a.append(int(input("Dato({})=".format(i))))
+
+aux=a[0]
+i=0
+while i < cantidad_datos:
+    contador=0
+    while i < cantidad_datos and a[i]==aux:
+        contador+=1
+        i+=1    
+
+    if contador==1:
+        print("Dato: ",aux,"Se repite= ",contador,"vez")
+    else:
+        print("Dato: ",aux,"Se repite= ",contador,"veces")
+            
+    if i < cantidad_datos:
+        aux=a[i] 
+
+print("Fin algoritmo")
+
 #11.	Se tienen dos vectores con datos numéricos, en el primer vector hay números múltiplos de tres
 #que determinan la cantidad de datos de rangos correspondientes al vector dos
 #encontrar el mayor, el menor y el promedio de cada rango.

@@ -386,3 +386,173 @@ while i < cantidad_datos:
         aux=a[i] 
 
 print("Fin algoritmo")
+
+
+
+#######EXAMEBN
+def leer_matriz():
+    matriz=[]
+    filas=int(input("Filas: "))
+    columnas=int(input("Columnas: "))
+    for i in range(filas):
+        fila=[]
+        for j in range(columnas):
+            fila.append(int(input(f'Dato({i},{j})= ')))
+        matriz.append(fila)
+
+    print("matriz:")
+    for fila in matriz:
+        print(fila)
+
+    return matriz 
+
+
+def primo(matriz):
+    si_primo=0
+    for i in range(len(matriz)):
+        for j in range(len(matriz[i])):
+            c=1
+            div=0
+            while c<=matriz[i][j]:
+                if matriz[i][j] % c==0:
+                    div+=1
+                c+=1
+            if div==2:
+                si_primo+=1
+                if si_primo==1:
+                    primo_mayor=matriz[i][j]
+                    columna_primo=j
+                else:
+                    if matriz[i][j]>primo_mayor:
+                        primo_mayor=matriz[i][j]
+                        columna_primo=j
+
+    print("Primo mayor: ",primo_mayor,"Columna: ",columna_primo)
+    return primo_mayor,columna_primo
+
+def fibonacci(matriz):
+    si_fibonacci=0
+    for i in range(len(matriz)):
+        for j in range(len(matriz[i])):
+            a=0
+            b=1
+            t=0
+            while t< matriz[i][j]:
+                t=a+b
+                a=b
+                b=t
+            if matriz[i][j]==t:
+                si_fibonacci+=1
+                if si_fibonacci==1:
+                    fibonacci_menor=matriz[i][j]
+                    columna_fibonacci=j
+                elif matriz[i][j]<fibonacci_menor:
+                    fibonacci_menor=matriz[i][j]
+                    columna_fibonacci=j
+
+    print("Fibonacci menor: ",fibonacci_menor,"Columna: ",columna_fibonacci)
+    return fibonacci_menor,columna_fibonacci
+
+def orden_columnas(matriz,columna_primo,columna_fibonacci):
+    nf= len(matriz)
+    #columna primo
+    for i in range(nf):
+        for j in range(i+1,nf):
+            if matriz[j][columna_primo]<matriz[i][columna_primo]:
+                matriz[j][columna_primo],matriz[i][columna_primo] = matriz[i][columna_primo],matriz[j][columna_primo]
+
+    #columna fibonacci
+    for i in range(nf):
+        for j in range(i+1,nf):
+            if matriz[j][columna_fibonacci]>matriz[i][columna_fibonacci]:
+                matriz[j][columna_fibonacci],matriz[i][columna_fibonacci] = matriz[i][columna_fibonacci],matriz[j][columna_fibonacci]
+
+    print("Matriz resultante con columnas de primo menor ordenada ascendentemente y columna fibonacci descendentemente")
+    for fila in matriz:
+        print(fila)                     
+
+
+matriz=leer_matriz()
+primo_mayor,columna_primo=primo(matriz)
+fibonacci_menor,columna_fibonacci=fibonacci(matriz)
+orden_columnas(matriz,columna_primo,columna_fibonacci)
+
+
+def leer_matriz():
+    matriz = []
+    filas = int(input("Filas: "))
+    columnas = int(input("Columnas: "))
+    for i in range(filas):
+        fila = []
+        for j in range(columnas):
+            fila.append(int(input(f'Dato({i},{j})= ')))
+        matriz.append(fila)
+
+    print("Matriz:")
+    for fila in matriz:
+        print(fila)
+
+    return matriz
+
+def vector_fibonaccis(matriz):
+    vector = []
+    filas = len(matriz)
+    columnas = len(matriz[0])
+    for i in range(filas):
+        for j in range(columnas):
+            a = 0
+            b = 1
+            t = 0
+            while t < matriz[i][j]:
+                t = a + b
+                a = b
+                b = t
+                
+            if matriz[i][j] == t:
+                b1 = 0
+                p = 0
+                while p < filas and b1 == 0:
+                    q = 0
+                    while q < columnas and b1 == 0:
+                        if matriz[i][j] == matriz[p][q]:
+                            b1 = 1
+                        else:
+                            q += 1
+                    p += 1
+
+                if b1 == 1:
+                    b2 = 0
+                    x = 0
+                    while x < len(vector) and b2 == 0:
+                        if matriz[i][j] == vector[x]:
+                            b2 = 1
+                        else:
+                            x += 1
+
+                    if b2 == 0:
+                        print(matriz[i][j], " Fibonacci comun")
+                        vector.append(matriz[i][j])
+
+    print("Vector resultante con numeros fibonaccis comunes sin repetir: ", vector)
+    return vector
+
+
+def contar_fibonaccis(matriz, vector_fibonaccis):
+    contador_fibonaccis = [0] * len(vector_fibonaccis)
+    
+    for i in range(len(matriz)):
+        for j in range(len(matriz[i])):
+            numero = matriz[i][j]
+            if numero in vector_fibonaccis:
+                index = vector_fibonaccis.index(numero)
+                contador_fibonaccis[index] += 1
+                
+    print("Vector de conteo de números Fibonacci en la matriz:")
+    for i in range(len(vector_fibonaccis)):
+        print(f"Número {vector_fibonaccis[i]}: {contador_fibonaccis[i]} veces")
+    
+    return contador_fibonaccis
+
+matriz = leer_matriz()
+vector = vector_fibonaccis(matriz)
+contar_fibonaccis(matriz,vector)

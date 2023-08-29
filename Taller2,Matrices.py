@@ -44,7 +44,7 @@ while i < filas and j < columnas:
     i += 1
     j += 1
 
-##### Punto 2 (Determinar el mayor, el menor y el promedio de cada fila)
+##### Punto 2 (Determinar el mayor, el menor y el promedio de cada columna)
 matriz=[]
 filas=int(input("Numero de filas= "))
 columnas=int(input("Numero de columnas= "))
@@ -531,7 +531,7 @@ print("Matriz con filas intercambiadas por promedios ascendentes:")
 for fila in matriz_1:
     print(fila)
 
-##### Punto 15 
+##### Punto 15 (Formar un vector con aquellos contadores de datos que se repiten y que sean numeros fibonaccis, sin repetidos)
 matriz=[]
 filas=int(input("Numero de filas: "))
 columnas=int(input("Numero de columnas: "))
