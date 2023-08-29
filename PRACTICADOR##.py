@@ -69,4 +69,10 @@ while True:
         promedio_fibo(promedio_primos)
     else:
         print("Opcion no registrada")
-        break    
+        break
+
+nuevo=int(input("Cambio nuevo en github jaja"))
+if nuevo==1:
+    print("Si funciono")
+else:
+    print("No funciono")    
