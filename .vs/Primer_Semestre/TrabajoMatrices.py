@@ -1,281 +1,284 @@
-##### Punto 7 (Se tiene una matriz cuadrada, formar un vector con los primos de la diagonal principal y los primos de la diagonal secundaria)
-dimension=int(input("Numero de filas y columnas: "))
-matriz=[]
-for i in range(dimension):
-    fila=[]
-    for j in range(dimension):
-        fila.append(int((input(f'Dato({i},{j})= '))))
+def Taller3_Punto1():
+    print("Punto 1 (Se tiene una matriz cuadrada, formar un vector con los primos de la diagonal principal y los primos de la diagonal secundaria)")
+    dimension=int(input("Numero de filas y columnas: "))
+    matriz=[]
+    for i in range(dimension):
+        fila=[]
+        for j in range(dimension):
+            fila.append(int((input(f'Dato({i},{j})= '))))
 
-    matriz.append(fila)    
+        matriz.append(fila)    
 
-v_primos_dprincipal=[]
-v_primos_dsecundaria=[]
-for i in range(dimension):
-    for j in range(dimension):
-        if i==j:
-            c=1
-            div=0
-            while c<= matriz[i][j]:
-                if matriz[i][j] % c==0:
-                    div+=1
-                c+=1
+    v_primos_dprincipal=[]
+    v_primos_dsecundaria=[]
+    for i in range(dimension):
+        for j in range(dimension):
+            if i==j:
+                c=1
+                div=0
+                while c<= matriz[i][j]:
+                    if matriz[i][j] % c==0:
+                        div+=1
+                    c+=1
 
-            if div==2:
-                print("Primo de diagonal principal: ",matriz[i][j])
-                v_primos_dprincipal.append(matriz[i][j])
+                if div==2:
+                    print("Primo de diagonal principal: ",matriz[i][j])
+                    v_primos_dprincipal.append(matriz[i][j])
 
-for i in range(dimension):
-    for j in range(dimension):
-        if i+j==dimension-1:
-            c=1
-            div=0
-            while c<= matriz[i][j]:
-                if matriz[i][j] % c==0:
-                    div+=1
-                c+=1
+    for i in range(dimension):
+        for j in range(dimension):
+            if i+j==dimension-1:
+                c=1
+                div=0
+                while c<= matriz[i][j]:
+                    if matriz[i][j] % c==0:
+                        div+=1
+                    c+=1
 
-            if div==2:
-                print("Primo de diagonal secundaria: ",matriz[i][j])
-                v_primos_dsecundaria.append(matriz[i][j])
+                if div==2:
+                    print("Primo de diagonal secundaria: ",matriz[i][j])
+                    v_primos_dsecundaria.append(matriz[i][j])
 
-print("Vector con los primos de la diagonal principal: ",v_primos_dprincipal)
-print("Vector con los primos de la diagonal secundaria: ",v_primos_dsecundaria)
+    print("Vector con los primos de la diagonal principal: ",v_primos_dprincipal)
+    print("Vector con los primos de la diagonal secundaria: ",v_primos_dsecundaria)
 
-#### Punto 8 (Se tiene una matriz cuadrada con datos numéricos, Comparar el promedio de los números pares que están sobre la diagonal principal)
-#con el promedio de los impares de los datos que están bajo la diagonal principal.
+def Taller2_Punto2():
+    print("Punto 2 (Se tiene una matriz cuadrada con datos numéricos, Comparar el promedio de los números pares que están sobre la diagonal principal)")
+    dimension=int(input("Numero de filas y columnas: "))
+    matriz=[]
+    for i in range(dimension):
+        fila=[]
+        for j in range(dimension):
+            fila.append(int((input(f'Dato({i},{j})= '))))
 
-dimension=int(input("Numero de filas y columnas: "))
-matriz=[]
-for i in range(dimension):
-    fila=[]
-    for j in range(dimension):
-        fila.append(int((input(f'Dato({i},{j})= '))))
+        matriz.append(fila) 
 
-    matriz.append(fila) 
+    sum_pares = 0
+    count_pares = 0
+    sum_impares = 0
+    count_impares = 0
 
-sum_pares = 0
-count_pares = 0
-sum_impares = 0
-count_impares = 0
-# Calcular promedio de pares sobre la diagonal principal
-for i in range(dimension):
-    for j in range(dimension):
-        if i < j and matriz[i][j] % 2 == 0:
-            sum_pares += matriz[i][j]
-            count_pares += 1
+    for i in range(dimension):
+        for j in range(dimension):
+            if i < j and matriz[i][j] % 2 == 0:
+                sum_pares += matriz[i][j]
+                count_pares += 1
 
-# Calcular promedio de impares bajo la diagonal principal
-for i in range(dimension):
-    for j in range(dimension):
-        if i > j and matriz[i][j] % 2 != 0:
-            sum_impares += matriz[i][j]
-            count_impares += 1
+    for i in range(dimension):
+        for j in range(dimension):
+            if i > j and matriz[i][j] % 2 != 0:
+                sum_impares += matriz[i][j]
+                count_impares += 1
 
-if count_pares > 0:
-    promedio_pares = sum_pares / count_pares
-else:
-    promedio_pares = 0
-    print("No hay números pares sobre la diagonal principal.")
-
-if count_impares > 0:
-    promedio_impares = sum_impares / count_impares
-else:
-    promedio_impares = 0
-    print("No hay números impares bajo la diagonal principal.")
-
-if promedio_pares > 0 and promedio_impares > 0:
-    if promedio_pares > promedio_impares:
-        print(f"El promedio de los números pares sobre la diagonal principal ({promedio_pares}) es mayor que el promedio de los números impares bajo la diagonal principal ({promedio_impares}).")
-    elif promedio_impares > promedio_pares:
-        print(f"El promedio de los números impares bajo la diagonal principal ({promedio_impares}) es mayor que el promedio de los números pares sobre la diagonal principal ({promedio_pares}).")
+    if count_pares > 0:
+        promedio_pares = sum_pares / count_pares
     else:
-        print("Los promedios son iguales.")
+        promedio_pares = 0
+        print("No hay números pares sobre la diagonal principal.")
 
-#### punto 9 (Determinar si el segundo primo es consecutivo con el cuarto primo al recorrer la matriz por COLUMNAS)
-matriz=[]
-filas=int(input("Numero de filas= "))
-columnas=int(input("Numero de columnas= "))
+    if count_impares > 0:
+        promedio_impares = sum_impares / count_impares
+    else:
+        promedio_impares = 0
+        print("No hay números impares bajo la diagonal principal.")
 
-for i in range(filas):
-    fila=[]
-    for j in range(columnas):
-        fila.append(int(input(f'Dato({i},{j})=')))
+    if promedio_pares > 0 and promedio_impares > 0:
+        if promedio_pares > promedio_impares:
+            print(f"El promedio de los números pares sobre la diagonal principal ({promedio_pares}) es mayor que el promedio de los números impares bajo la diagonal principal ({promedio_impares}).")
+        elif promedio_impares > promedio_pares:
+            print(f"El promedio de los números impares bajo la diagonal principal ({promedio_impares}) es mayor que el promedio de los números pares sobre la diagonal principal ({promedio_pares}).")
+        else:
+            print("Los promedios son iguales.")
 
-    matriz.append(fila)
+def Taller2_Punto3():
+    print("punto 3 (Determinar si el segundo primo es consecutivo con el cuarto primo al recorrer la matriz por COLUMNAS)")
+    matriz=[]
+    filas=int(input("Numero de filas= "))
+    columnas=int(input("Numero de columnas= "))
 
-print(matriz)
-si_primo=0
-print("Primos encontrados al recorrer matriz por COLUMNAS: ")
-for j in range(columnas):
     for i in range(filas):
-        c=1
+        fila=[]
+        for j in range(columnas):
+            fila.append(int(input(f'Dato({i},{j})=')))
+
+        matriz.append(fila)
+
+    print(matriz)
+    si_primo=0
+    print("Primos encontrados al recorrer matriz por COLUMNAS: ")
+    for j in range(columnas):
+        for i in range(filas):
+            c=1
+            div=0
+            while c<=matriz[i][j]:
+                if matriz[i][j] % c==0:
+                    div+=1
+                c+=1
+
+            if div==2:
+                si_primo+=1
+                if si_primo==2:
+                    segundo_primo=matriz[i][j]
+                    print("Segundo primo: ",matriz[i][j])
+                    print("Ubicado en la columna: ",j)
+                    print("Fila: ",i) 
+                elif si_primo==4:
+                    cuarto_primo=matriz[i][j]
+                    print("Cuarto primo: ",matriz[i][j])
+                    print("Ubicado en la columna: ",j)
+                    print("Fila: ",i)
+
+    if cuarto_primo<segundo_primo:
+        aux=segundo_primo
+        segundo_primo=cuarto_primo
+        cuarto_primo=aux
+
+    c_remplazo=segundo_primo+1
+    b=0
+    while c_remplazo < cuarto_primo and b==0:
+        c_2=1
         div=0
-        while c<=matriz[i][j]:
-            if matriz[i][j] % c==0:
+        while c_2<=c_remplazo:
+            if c_remplazo % c_2==0:
                 div+=1
-            c+=1
+            c_2+=1
 
         if div==2:
-            si_primo+=1
-            if si_primo==2:
-                segundo_primo=matriz[i][j]
-                print("Segundo primo: ",matriz[i][j])
-                print("Ubicado en la columna: ",j)
-                print("Fila: ",i) 
-            elif si_primo==4:
-                cuarto_primo=matriz[i][j]
-                print("Cuarto primo: ",matriz[i][j])
-                print("Ubicado en la columna: ",j)
-                print("Fila: ",i)
+            b+=1
+        else:
+            c_remplazo+=1            
 
-if cuarto_primo<segundo_primo:
-    aux=segundo_primo
-    segundo_primo=cuarto_primo
-    cuarto_primo=aux
-
-c_remplazo=segundo_primo+1
-b=0
-while c_remplazo < cuarto_primo and b==0:
-    c_2=1
-    div=0
-    while c_2<=c_remplazo:
-        if c_remplazo % c_2==0:
-            div+=1
-        c_2+=1
-
-    if div==2:
-        b+=1
+    if b==0:
+        print("El segundo y cuarto primo son consecutivos ya que no hay ningun primo entre estos")
     else:
-        c_remplazo+=1            
-
-if b==0:
-    print("El segundo y cuarto primo son consecutivos ya que no hay ningun primo entre estos")
-else:
-    print("El segundo primo y el cuarto primo No son consecutivos ya que en estos hay numeros primos")
+        print("El segundo primo y el cuarto primo No son consecutivos ya que en estos hay numeros primos")
 
 
-##### Punto 10 (Ordenar las columas pares de forma ascendente y las impares de forma descendente)
-matriz = []
-filas = int(input("Numero de filas: "))
-columnas = int(input("Numero de columnas: "))
+def Taller2_Punto4():
+    print("Punto 4 (Ordenar las columas pares de forma ascendente y las impares de forma descendente)")
+    matriz = []
+    filas = int(input("Numero de filas: "))
+    columnas = int(input("Numero de columnas: "))
 
-for i in range(filas):
-    fila = []
+    for i in range(filas):
+        fila = []
+        for j in range(columnas):
+            fila.append(int(input(f'Dato({i},{j})=')))
+        matriz.append(fila)
+
+    print("Matriz original:")
+    for i in range(filas):
+        for j in range(columnas):
+            print("Fila: ",i," Columna: ",j," Dato= ",matriz[i][j])
+
     for j in range(columnas):
-        fila.append(int(input(f'Dato({i},{j})=')))
-    matriz.append(fila)
+        if j % 2 == 0:  # Columnas pares
+            for i in range(filas - 1):
+                for k in range(i + 1, filas):
+                    if matriz[k][j] < matriz[i][j]:
+                        aux = matriz[i][j]
+                        matriz[i][j] = matriz[k][j]
+                        matriz[k][j] = aux
+        else:  # Columnas impares
+            for i in range(filas - 1):
+                for k in range(i + 1, filas):
+                    if matriz[k][j] > matriz[i][j]:
+                        aux = matriz[i][j]
+                        matriz[i][j] = matriz[k][j]
+                        matriz[k][j] = aux
 
-print("Matriz original:")
-for i in range(filas):
-    for j in range(columnas):
-        print("Fila: ",i," Columna: ",j," Dato= ",matriz[i][j])
+    print("Matriz ordenada en columnas pares ascendentes y columnas impares descendentes:")
+    for i in range(filas):
+        for j in range(columnas):
+            print("Fila: ",i," Columna: ",j," Dato= ",matriz[i][j])
 
-for j in range(columnas):
-    if j % 2 == 0:  # Columnas pares
-        for i in range(filas - 1):
-            for k in range(i + 1, filas):
-                if matriz[k][j] < matriz[i][j]:
-                    aux = matriz[i][j]
-                    matriz[i][j] = matriz[k][j]
-                    matriz[k][j] = aux
-    else:  # Columnas impares
-        for i in range(filas - 1):
-            for k in range(i + 1, filas):
-                if matriz[k][j] > matriz[i][j]:
-                    aux = matriz[i][j]
-                    matriz[i][j] = matriz[k][j]
-                    matriz[k][j] = aux
+def Taller2_Punto5():
+    print("Punto 5 (dos matrices ordenadas ascendentemente, obtener un vector ordenado ascendentemente por mezcla )")
+    matriz_1 = []
+    matriz_2 = []
+    vector = []
 
-print("Matriz ordenada en columnas pares ascendentes y columnas impares descendentes:")
-for i in range(filas):
-    for j in range(columnas):
-        print("Fila: ",i," Columna: ",j," Dato= ",matriz[i][j])
+    filas_1 = int(input("Filas en matriz 1: "))
+    columnas_1 = int(input("Columnas en matriz : "))
+    print("Digite los datos de la matriz 1 en orden ascendente: ")
+    for i in range(filas_1):
+        fila_1 = []
+        for j in range(columnas_1):
+            fila_1.append(int(input(f'Dato({i},{j})= ')))
+        matriz_1.append(fila_1)
 
-#### Punto 11 (dos matrices ordenadas ascendentemente, obtener un vector ordenado ascendentemente por mezcla )
-matriz_1 = []
-matriz_2 = []
-vector = []
+    filas_2 = int(input("Filas en matriz 2: "))
+    columnas_2 = int(input("Columnas en matriz 2: "))
+    print("Digite los datos de la matriz 2 en orden ascendente: ")
+    for i in range(filas_2):
+        fila_2 = []
+        for j in range(columnas_2):
+            fila_2.append(int(input(f'Dato({i},{j})= ')))
+        matriz_2.append(fila_2)
 
-filas_1 = int(input("Filas en matriz 1: "))
-columnas_1 = int(input("Columnas en matriz : "))
-print("Digite los datos de la matriz 1 en orden ascendente: ")
-for i in range(filas_1):
-    fila_1 = []
-    for j in range(columnas_1):
-        fila_1.append(int(input(f'Dato({i},{j})= ')))
-    matriz_1.append(fila_1)
+    print("Matriz 1: ", matriz_1, " Matriz 2: ", matriz_2)
 
-filas_2 = int(input("Filas en matriz 2: "))
-columnas_2 = int(input("Columnas en matriz 2: "))
-print("Digite los datos de la matriz 2 en orden ascendente: ")
-for i in range(filas_2):
-    fila_2 = []
-    for j in range(columnas_2):
-        fila_2.append(int(input(f'Dato({i},{j})= ')))
-    matriz_2.append(fila_2)
+    i = 0  # filas matriz 1
+    j = 0  # columnas matriz 1
+    z = 0  # filas matriz 2
+    x = 0  # columnas matriz 2
 
-print("Matriz 1: ", matriz_1, " Matriz 2: ", matriz_2)
+    while i < filas_1 or z < filas_2:
+        if i == filas_1:
+            vector += matriz_2[z][x:]
+            break
+        elif z == filas_2:
+            vector += matriz_1[i][j:]
+            break
+        elif matriz_1[i][j] < matriz_2[z][x]:
+            vector.append(matriz_1[i][j])
+            j += 1
+            if j == columnas_1:
+                j = 0
+                i += 1
+        else:
+            vector.append(matriz_2[z][x])
+            x += 1
+            if x == columnas_2:
+                x = 0
+                z += 1
 
-i = 0  # filas matriz 1
-j = 0  # columnas matriz 1
-z = 0  # filas matriz 2
-x = 0  # columnas matriz 2
+    print("Vector ordenado por mezcla: ", vector)
 
-while i < filas_1 or z < filas_2:
-    if i == filas_1:
-        vector += matriz_2[z][x:]
-        break
-    elif z == filas_2:
-        vector += matriz_1[i][j:]
-        break
-    elif matriz_1[i][j] < matriz_2[z][x]:
-        vector.append(matriz_1[i][j])
-        j += 1
-        if j == columnas_1:
-            j = 0
-            i += 1
-    else:
-        vector.append(matriz_2[z][x])
-        x += 1
-        if x == columnas_2:
-            x = 0
-            z += 1
+def Taller2_Punto6():
+    print("Punto 6 (Intercambiar las filas de una matriz de acuerdo al orden ascendente de los promedios de cada fila)")
+    matriz_1 = []
+    filas_1 = int(input("Filas en matriz 1: "))
+    columnas_1 = int(input("Columnas en matriz : "))
+    print("Digite los datos de la matriz 1 en orden ascendente: ")
+    for i in range(filas_1):
+        fila_1 = []
+        for j in range(columnas_1):
+            fila_1.append(int(input(f'Dato({i},{j})= ')))
+        matriz_1.append(fila_1)
 
-print("Vector ordenado por mezcla: ", vector)
+    print("Matriz original:")
+    for fila in matriz_1: #me saca la matriz de una forma mas lejible, como uma matriz en papel
+        print(fila)
 
-#### Punto 12(Intercambiar las filas de una matriz de acuerdo al orden ascendente de los promedios de cada fila)
-matriz_1 = []
-filas_1 = int(input("Filas en matriz 1: "))
-columnas_1 = int(input("Columnas en matriz : "))
-print("Digite los datos de la matriz 1 en orden ascendente: ")
-for i in range(filas_1):
-    fila_1 = []
-    for j in range(columnas_1):
-        fila_1.append(int(input(f'Dato({i},{j})= ')))
-    matriz_1.append(fila_1)
+    promedios = []
+    for i in range(filas_1):
+        suma = sum(matriz_1[i])
+        promedio = suma / columnas_1
+        print("promedio fila ",i," = ",promedio)
+        promedios.append(promedio)
 
-print("Matriz original:")
-for fila in matriz_1: #me saca la matriz de una forma mas lejible, como uma matriz en papel
-    print(fila)
+    for i in range(filas_1 - 1):
+        for j in range(i + 1, filas_1):
+            if promedios[i] > promedios[j]:
+                matriz_1[i], matriz_1[j] = matriz_1[j], matriz_1[i]
+                promedios[i], promedios[j] = promedios[j], promedios[i]
 
-promedios = []
-for i in range(filas_1):
-    suma = sum(matriz_1[i])
-    promedio = suma / columnas_1
-    print("promedio fila ",i," = ",promedio)
-    promedios.append(promedio)
+    print("Matriz con filas intercambiadas por promedios ascendentes:")
+    for fila in matriz_1:
+        print(fila)
 
-for i in range(filas_1 - 1):
-    for j in range(i + 1, filas_1):
-        if promedios[i] > promedios[j]:
-            matriz_1[i], matriz_1[j] = matriz_1[j], matriz_1[i]
-            promedios[i], promedios[j] = promedios[j], promedios[i]
-
-print("Matriz con filas intercambiadas por promedios ascendentes:")
-for fila in matriz_1:
-    print(fila)
-
-#######  Punto 13 
+#######  Punto 7
 def leer_matriz():
     matriz=[]
     cantidad=int(input("Numero de filas * columnas: "))
@@ -289,7 +292,8 @@ def leer_matriz():
         print(fila)
     return matriz
 
-def promedio_diagonal_principal_secundaria(valor_1):
+def promedio_diagonal_principal_secundaria():
+    valor_1=leer_matriz()
     suma=0
     contador=0
     print("Datos de la diagonal principal: ")
@@ -316,7 +320,8 @@ def promedio_diagonal_principal_secundaria(valor_1):
     promedio_2=suma/contador
     print("Promedio de la diagonal secundaria: ",promedio_2)           
 
-def orden_diagonal_principal(valor_2):
+def orden_diagonal_principal():
+    valor_2=leer_matriz()
     for i in range(len(valor_2)-1):
         for j in range(i+1,len(valor_2)):
             if valor_2[j][j]<valor_2[i][i]:
@@ -327,7 +332,8 @@ def orden_diagonal_principal(valor_2):
     for fila in valor_2:
         print(fila)   
 
-def promedio_encima_diagonales(matriz):
+def promedio_encima_diagonales():
+    matriz=leer_matriz()
     suma_pares = 0
     contador_pares = 0
     suma_impares = 0
@@ -356,7 +362,8 @@ def promedio_encima_diagonales(matriz):
     else:
         print("No hay números impares encima de la diagonal secundaria.")
 
-def relllenar_diagonales(matriz):
+def relllenar_diagonales():
+    matriz=leer_matriz()
     si_primo=0
     si_fibonacci=0
     si_par=0
@@ -414,7 +421,9 @@ def relllenar_diagonales(matriz):
         print(fila)
     return par_mayor,impar_menor                
 
-def llenar_contorno_interior(matriz, par_mayor, impar_menor):
+def llenar_contorno_interior():
+    matriz=leer_matriz()
+    par_mayor,impar_menor=relllenar_diagonales()
     for i in range(len(matriz)):
         for j in range(len(matriz[i])):
             if i == 0 or i == len(matriz) - 1 or j == 0 or j == len(matriz[i]) - 1:
@@ -426,17 +435,10 @@ def llenar_contorno_interior(matriz, par_mayor, impar_menor):
     for fila in matriz:
         print(fila)
 
-#¡¡¡¡ QUITAS LOS "#" DE LO SIGUIENTE Y ASI FUNCIONAN LOS SUBPROGRAMAS ¡¡¡¡
-matriz= leer_matriz() #obligatorio(Siempre lo debes dejar activo para que funcione lo demas)
-#promedio_diagonal_principal_secundaria(matriz)
-#orden_diagonal_principal(matriz)
-#promedio_encima_diagonales(matriz)
-#par_mayor, impar_menor = relllenar_diagonales(matriz) #obligatoria para que funcione la siguiente, se hizo asi para comprobar si servia algo(return)
-#llenar_contorno_interior(matriz, par_mayor, impar_menor)
 
-
-####punto 14
+####punto 8
 def leer_dos_matrices():
+    print(">Subprograma leer dos matrices<")
     matriz_1 = []
     matriz_2 = []
 
@@ -468,7 +470,9 @@ def leer_dos_matrices():
 
     return matriz_1, matriz_2
 
-def vector_elementos_comunes(matriz_1, matriz_2):
+def vector_elementos_comunes():
+    print(">Subprograma vector con los elementos comunes<")
+    matriz_1,matriz_2=leer_dos_matrices()
     vector = []
     for i in range(len(matriz_1)):
         for j in range(len(matriz_1[i])):
@@ -482,7 +486,9 @@ def vector_elementos_comunes(matriz_1, matriz_2):
     print("Vector resultante con los datos comunes sin repetir: ", vector)
     return vector
 
-def vector_primos_comunes(matriz_1,matriz_2):
+def vector_primos_comunes():
+    print(">Subprograma vector con los primos comunes<")
+    matriz_1,matriz_2=leer_dos_matrices()
     vector_2=[]
     for i in range(len(matriz_1)):
         for j in range(len(matriz_1[i])):
@@ -520,59 +526,57 @@ def vector_primos_comunes(matriz_1,matriz_2):
     return vector_2    
                                      
 
-#¡¡¡¡ QUITAS LOS "#" DE LO SIGUIENTE Y ASI FUNCIONAN LOS SUBPROGRAMAS ¡¡¡¡
-matriz_1, matriz_2 = leer_dos_matrices()  #obligatorio(Siempre lo debes dejar activo para que funcione lo demas)
-#vector_datos_comunes = vector_elementos_comunes(matriz_1, matriz_2)
-#vector_datos_primos_comunes = vector_primos_comunes(matriz_1,matriz_2)
 
+def Taller3_Punto9():
+    print("Punto 9 (Formar un vector con aquellos contadores de datos que se repiten y que sean numeros fibonaccis, sin repetidos)")
+    matriz=[]
+    filas=int(input("Numero de filas: "))
+    columnas=int(input("Numero de columnas: "))
+    for i in range(filas):
+        fila=[]
+        for j in range(columnas):
+            fila.append(int(input(f'Dato({i},{j})= ')))
+        matriz.append(fila) 
 
-##### Punto 15 (Formar un vector con aquellos contadores de datos que se repiten y que sean numeros fibonaccis, sin repetidos)
-matriz=[]
-filas=int(input("Numero de filas: "))
-columnas=int(input("Numero de columnas: "))
-for i in range(filas):
-    fila=[]
-    for j in range(columnas):
-        fila.append(int(input(f'Dato({i},{j})= ')))
-    matriz.append(fila) 
+    datos_no_repetidos=[]
+    contador=[]
+    print(matriz)
+    for i in range(filas):
+        for j in range(columnas):
+            aux=matriz[i][j]
+            if aux not in datos_no_repetidos:
+                datos_no_repetidos.append(aux)
+                contador.append(1)
+            else:
+                contador[datos_no_repetidos.index(aux)]+=1
 
-datos_no_repetidos=[]
-contador=[]
-print(matriz)
-for i in range(filas):
-    for j in range(columnas):
-        aux=matriz[i][j]
-        if aux not in datos_no_repetidos:
-            datos_no_repetidos.append(aux)
-            contador.append(1)
-        else:
-            contador[datos_no_repetidos.index(aux)]+=1
+    for i in range(len(contador)):
+        print("Dato: ",datos_no_repetidos[i]," Veces: ",contador[i])  
 
-for i in range(len(contador)):
-    print("Dato: ",datos_no_repetidos[i]," Veces: ",contador[i])  
+    vector_contador=[]
+    for i in range(len(contador)):
+        if contador[i]>1:
+            a=0
+            b=1
+            t=0
+            while t<contador[i]:
+                t=a+b
+                a=b
+                b=t
 
-vector_contador=[]
-for i in range(len(contador)):
-    if contador[i]>1:
-        a=0
-        b=1
-        t=0
-        while t<contador[i]:
-            t=a+b
-            a=b
-            b=t
+            if contador[i]==t:
+                print(contador[i],"es fibonacci")
+                dato= contador[i] in vector_contador
+                if dato==False:
+                    vector_contador.append(contador[i])
 
-        if contador[i]==t:
-            print(contador[i],"es fibonacci")
-            dato= contador[i] in vector_contador
-            if dato==False:
-                vector_contador.append(contador[i])
-
-print("Vector con los contadores fibonaccis de los datos repetidos, (agregados sin repetir): ",vector_contador)
+    print("Vector con los contadores fibonaccis de los datos repetidos, (agregados sin repetir): ",vector_contador)
 
 
 ####Punto 16
-def intercambio_columnas(matriz):
+def intercambio_columnas():
+    print(">Subprograma intercambiar las columnas de la matriz<")
+    matriz=leer_matriz()
     for i in range(len(matriz)):
         aux=matriz[i][0]
         matriz[i][0]=matriz[i][-1]
@@ -582,9 +586,10 @@ def intercambio_columnas(matriz):
     for fila in matriz:
         print(fila)
 
-    return matriz
 
-def mayor_menor_promedio_columnas(matriz):
+def mayor_menor_promedio_columnas():
+    print(">Subprograma mayor, menor y promedio de las columnas")
+    matriz=leer_matriz()
     for j in range(len(matriz[0])):
         mayor = matriz[0][j]
         menor = matriz[0][j]
@@ -599,7 +604,9 @@ def mayor_menor_promedio_columnas(matriz):
         promedio = suma / len(matriz)
         print("Columna", j, "Mayor:", mayor, "Menor:", menor, "Promedio:", promedio)
 
-def ordenar_filas_pares_impares(matriz):
+def ordenar_filas_pares_impares():
+    print(">Subprograma ordenar filas pares e impares<")
+    matriz=leer_matriz()
     for i in range(len(matriz)):
         if i % 2 == 0:  # Fila par
             for j in range(len(matriz[i]) - 1):
@@ -619,7 +626,9 @@ def ordenar_filas_pares_impares(matriz):
     for fila in matriz:
         print(fila)
 
-def orden_matriz_descendente(matriz):
+def orden_matriz_descendente():
+    print(">Subprograma ordenar la matriz descendentemente<")
+    matriz=leer_matriz()
     for i in range(len(matriz)):
         for j in range(len(matriz[i])):
             p=i
@@ -638,7 +647,9 @@ def orden_matriz_descendente(matriz):
         print(fila)
     return matriz    
 
-def intercambiar_filas_promedio_ascendente(matriz):
+def intercambiar_filas_promedio_ascendente():
+    print(">Subprograma intercambiar filas segun el promedio ascendente<")
+    matriz=leer_matriz()
     promedios = []
     
     for i in range(len(matriz)):
@@ -656,7 +667,9 @@ def intercambiar_filas_promedio_ascendente(matriz):
     for fila in nueva_matriz:
         print(fila)
 
-def intercambiar_filas_mayor_menor(matriz):
+def intercambiar_filas_mayor_menor():
+    print(">Subprograma intercambiar filas de mayor a menor")
+    matriz=leer_matriz()
     mayor = matriz[0][0]
     menor = matriz[0][0]
     fila_mayor = 0
@@ -691,7 +704,9 @@ def encontrar_fibonacci(numero):
     
     return t == numero
 
-def intercambiar_filas_fibonacci_2_4(matriz):
+def intercambiar_filas_fibonacci_2_4():
+    matriz=leer_matriz()
+    print(">Subprograma intercambiar las filas de fibonaccis<")
     fila_fibonacci_2 = None
     fila_fibonacci_4 = None
     
@@ -712,7 +727,9 @@ def intercambiar_filas_fibonacci_2_4(matriz):
     else:
         print("No se encontraron filas con Fibonacci 2 y Fibonacci 4.")
 
-def intercambiar_filas_primo_fibonacci_menor(matriz):
+def intercambiar_filas_primo_fibonacci_menor():
+    print(">Subprograma intercambiar las filas del primo con el fibonacci menor<")
+    matriz=leer_matriz()
     primo_mayor = None
     fibonacci_menor = None
     
@@ -755,6 +772,8 @@ def encontrar_primo(numero):
     return True
 
 def consecutivos_primo_2_4(matriz):
+    print(">Subprograma primos consecutivos<")
+    matriz=leer_matriz()
     posicion_primo_2 = None
     posicion_primo_4 = None
     
@@ -773,14 +792,4 @@ def consecutivos_primo_2_4(matriz):
     else:
         print("No se encontraron filas con primos 2 y 4.")
 
-#¡¡¡¡ QUITAS LOS "#" DE LO SIGUIENTE Y ASI FUNCIONAN LOS SUBPROGRAMAS ¡¡¡¡
-matriz_intercambio_columnas = intercambio_columnas(matriz) #obligatorio(Siempre lo debes dejar activo para que funcione lo demas)
-#mayor_menor_promedio_columnas(matriz)
-#ordenar_filas_pares_impares(matriz)
-#matriz_ordenada_descendentemente = orden_matriz_descendente(matriz)
-#intercambiar_filas_promedio_ascendente(matriz)       
-#intercambiar_filas_mayor_menor(matriz)
-#intercambiar_filas_fibonacci_2_4(matriz)
-#intercambiar_filas_primo_fibonacci_menor(matriz)
-#consecutivos_primo_2_4(matriz)
 

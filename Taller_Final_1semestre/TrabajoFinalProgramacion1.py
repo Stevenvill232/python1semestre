@@ -182,6 +182,9 @@ def ordenarDescendentemente(v):
         for j in range(i+1,cd):
             if v[i]<v[j]:
                 intercambiarDatos(v,i,j)
+def intercambiarFilasMatriz(m,f1,f2):
+    for j in range(len(m[0])):
+        m[f1][j], m[f2][j] = m[f2][j],m[f1][j]
 
 #TALLERES Y EVALUACIONES
 #TALLER 1
@@ -356,7 +359,7 @@ def Taller1_punto4():
         for i in range(len(v)):
             if v[i]==segundo_primo:
                 veces_segundo_pri+=1
-        print("Segundo ptimo encontrado: ",segundo_primo,"Veces que se repite: ",veces_segundo_pri)         
+        print("Segundo primo encontrado: ",segundo_primo,"Veces que se repite: ",veces_segundo_pri)         
     else:
         print("No se encontro el segundo primo en la cantidad de numeros")           
 def Taller1_punto5():
@@ -576,10 +579,13 @@ def taller2Punto9():
             if i%3==0:
                 a+=i
                 c+=1
-    pt = a/c
     print(f"Fibonacci numero 2: {f2}")
     print(f"Fibonacci numero 3: {f3}")
-    print(f"Promedio total: {pt}")
+    if c==0:
+        print("No hay multiplos de 3 entre el segundo y el tercer fibonacci")
+    else:
+        pt = a/c
+        print(f"Promedio total de los primos entre el fiboncci 2 y 3: {pt}")
 
 def taller2Punto10():
     v = leerVector()
@@ -592,6 +598,8 @@ def taller2Punto10():
     fm = factorial(f)
     v[p2] = fm
     v[p3] = fm
+    print(f"Fibonacci 3: {f3}")
+    print(f"Fibonacci 2: {f2}")
     print(f"Vector resultante: {v}")
 
 #TALLER 3
@@ -604,6 +612,7 @@ def taller3Punto1():
             if i==j or i+j==nf-1:
                 if primo(m[i][j]):
                     v.append(m[i][j])
+    imprimir_matriz(m)
     print(f'Vector con los primos de las diagonales: {v}')
 
 def taller3Punto2():
@@ -622,17 +631,20 @@ def taller3Punto2():
                 if m[i][j]%2==1:
                     aImp+=m[i][j]
                     cImp+=1
-    pPar = aPar/cPar
-    pImp = aImp/cImp
-    print(f'Promedio pares: {pPar}')
-    print(f'Promedio impares: {pImp}')
-    if pPar>pImp:
-        print(f'El promedio de los pares es mayor que el de los impares')
-    else:
-        if pPar==pImp:
-            print(f'El promedio de pares e impares es el mismo')
+    if cPar==0 or cImp==0:
+        print("No existen pares o impares")
+    else: 
+        pPar = aPar/cPar
+        pImp = aImp/cImp
+        print(f'Promedio pares: {pPar}')
+        print(f'Promedio impares: {pImp}')
+        if pPar>pImp:
+            print(f'El promedio de los pares es mayor que el de los impares')
         else:
-            print(f'El promedio de los impares es mayor que el de los pares')
+            if pPar==pImp:
+                print(f'El promedio de pares e impares es el mismo')
+            else:
+                print(f'El promedio de los impares es mayor que el de los pares')
 
 def taller3Punto3():
     m = leerMatriz()
@@ -955,8 +967,11 @@ def taller3punto8_3():
                 if m[i][j]%2==1:
                     ai+=m[i][j]
                     ci+=1
-    print(f'El promedio de los pares encima de la diagonal principal es: {ap/cp}')
-    print(f'El promedio de los impares en la diagonal secundaria es: {ai/ci}')
+    if cp==0 or ci==0:
+        print("El contador de los pares o impares es 0")
+    else:
+        print(f'El promedio de los pares encima de la diagonal principal es: {ap/cp}')
+        print(f'El promedio de los impares en la diagonal secundaria es: {ai/ci}')
 
 def taller3punto8_4():
     m,cd = matrizCuadrada()
@@ -1132,6 +1147,49 @@ def taller3Punto10():
     print(f"El vector de los contadores fibonacci es: {v}")
     # for i,j in zip(v,vn):
     #     print(f"El numero es {j}, y su contador es {i}")
+
+####Punto sustentacion 13
+def Sustentacion_Punto13():
+    matriz=leerMatriz()
+    filas=len(matriz)
+    columnas=len(matriz[0])
+    si_primo=0
+    si_fibo=0
+    for i in range(filas):
+        for j in range(columnas):
+            c=1
+            div=0
+            while c<=matriz[i][j]:
+                if matriz[i][j] % c==0:
+                    div+=1
+                c+=1
+            if div==2:
+                si_primo+=1
+                if si_primo==1:
+                    primer_primo=matriz[i][j]
+
+            a=0
+            b=1
+            t=0
+            while t<matriz[i][j]:
+                t=a+b
+                a=b
+                b=t
+            if t==matriz[i][j]:
+                si_fibo+=1
+                if si_fibo==2:
+                    segundo_fibonacci=matriz[i][j]
+
+    if si_primo>0 and si_fibo>1:
+        print("Primer primo de la matriz: ",primer_primo," Segundo fibonacci de la matriz: ",segundo_fibonacci) 
+        c_2=primer_primo
+        c_3=1
+        while c_3<segundo_fibonacci:
+            c_2+=primer_primo
+            c_3+=1  
+        print("Su multiplicacion es= ",c_2)        
+    else:
+        print("No se encontro el primer primo o el segundo fibonacci") 
 
 #PARCIAL 1  
 def Parcial1_Punto1():
@@ -1397,63 +1455,37 @@ def Parcial_2_ejercicio_3():
             print(f"Vector resultante: {v2}")
 
 def Parcial_2_ejercicio_4():
-    v = []
-    cantidad_datos = int(input("Cantidad de datos en vector: "))
-    print("Datos en vector:")
-    for i in range(cantidad_datos):
-        v.append(int(input("Dato({})=".format(i))))
-
-    matriz = []
-    Filas = int(input("Numero de filas: "))
-    Columnas = int(input("Numero de columnas: "))
-    for i in range(Filas):
-        fila = []
-        for j in range(Columnas):
-            fila.append(int(input(f'Dato {i},{j} = ')))
-        matriz.append(fila)
-
-    print("Vector:", v)
+    print("Vector:")
+    v = leerVector()
+    print("Matriz: ")
+    matriz = leerMatriz()
+    filas, columnas = dimensionMatriz(matriz)
+    print(f"Vector: {v} ")
     print("Matriz:")
-    for fila in matriz:
-        print(fila)
-
-    si_primo = 0
-    for primo in v:
-        c = 1
-        div = 0
-        while c <= primo:
-            if primo % c == 0:
-                div += 1
-            c += 1
-
-        if div == 2:
-            si_primo += 1
-            if si_primo == 1:
-                for i in range(Filas):
-                    j = 0
-                    while j < Columnas:
-                        if primo == matriz[i][j]:
-                            fila_primo_1 = i
-                            print("Fila del primer primo en común:", fila_primo_1)
-                            break
-                        j += 1
-            elif si_primo == 2:
-                for i in range(Filas):
-                    j = 0
-                    while j < Columnas:
-                        if primo == matriz[i][j]:
-                            fila_primo_2 = i
-                            print("Fila del segundo primo en común:", fila_primo_2)
-                            break
-                        j += 1
-
-    for j in range(Columnas):
-        aux=matriz[fila_primo_1][j]
-        matriz[fila_primo_1][j]=matriz[fila_primo_2][j]
-        matriz[fila_primo_2][j]=aux
-
-    for fila in matriz:
-        print(fila)
+    imprimir_matriz(matriz)
+    cp = 0
+    for i in v:
+        if primo(i):
+            x = 0
+            b = 0
+            while x<filas and b==0:
+                z = 0
+                while z<columnas and b==0:
+                    if i==matriz[x][z] and cp==0:
+                        fila_primo_1 = x
+                        cp=1
+                        b=1
+                    else:  
+                        if i==matriz[x][z] and cp==1:
+                            fila_primo_2 = x
+                            cp=2
+                            b=1
+                    z+=1
+                x+=1
+    intercambiarFilasMatriz(matriz,fila_primo_1,fila_primo_2)
+    print("Matriz resultante: ")
+    print(f"Filas que se van a intercambiar: {fila_primo_1} y {fila_primo_2}")
+    imprimir_matriz(matriz)
 
 #MENU 
 opcion = 1
@@ -1654,11 +1686,13 @@ while opcion != 0:
                     case "0":
                         taller2 = 0
                     case _:
-                        print("Opcion no valida")
+                        print("Opcion no valida")    
+
+
         case "3":
             taller3 = 1
             while taller3 != 0:
-                menuPuntos("Taller 3",10,"Volver al inicio")
+                menuPuntos("Taller 3",11,"Volver al inicio")
                 taller3 = input('Digite la opcion:')
                 match taller3:
                     case "1":
@@ -1944,6 +1978,18 @@ while opcion != 0:
                                 print("\nOPCION NO VALIDA")
                                 menuVolverAEjecutar()
                             p=int(input("Digite su opcion-> "))
+
+                    case "11":
+                        p=1 
+                        while p !=0 :
+                            if (p==1):
+                                desarrolloDelPunto(11)
+                                Sustentacion_Punto13()
+                                menuVolverAEjecutar()
+                            else: 
+                                print("\nOPCION NO VALIDA")
+                                menuVolverAEjecutar()
+                            p=int(input("Digite su opcion-> "))
                     case "0":
                         taller3 = 0
                     case _:
@@ -2039,16 +2085,24 @@ while opcion != 0:
                                 case "3":
                                     p=1
                                     while p !=0 :
-                                        desarrolloDelPunto(3)
-                                        Parcial_2_ejercicio_3()
-                                        menuVolverAEjecutar()
+                                        if p==1:
+                                            desarrolloDelPunto(3)
+                                            Parcial_2_ejercicio_3()
+                                            menuVolverAEjecutar()
+                                        else:
+                                            print("\nOPCION NO VALIDA\n")
+                                            menuVolverAEjecutar()
                                         p=int(input("Digite su opcion-> "))
                                 case "4":
                                     p=1 
                                     while p !=0 :
-                                        desarrolloDelPunto(4)
-                                        Parcial_2_ejercicio_4()
-                                        menuVolverAEjecutar()
+                                        if p==1:
+                                            desarrolloDelPunto(4)
+                                            Parcial_2_ejercicio_4()
+                                            menuVolverAEjecutar()
+                                        else:
+                                            print("\nOPCION NO VALIDA\n")
+                                            menuVolverAEjecutar()
                                         p=int(input("Digite su opcion-> "))
                                 case "0":
                                     parcial2 = 0

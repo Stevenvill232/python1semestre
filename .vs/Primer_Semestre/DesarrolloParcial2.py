@@ -187,7 +187,9 @@ def Parcial2_punto4():
         matriz.append(fila)
 
     print("Vector:", v)
-    print("Matriz:", matriz)
+    print("Matriz:")
+    for fila in matriz:
+        print(fila)
 
     si_primo = 0
     for primo in v:
@@ -224,11 +226,10 @@ def Parcial2_punto4():
         matriz[fila_primo_1][j]=matriz[fila_primo_2][j]
         matriz[fila_primo_2][j]=aux
 
-    for i in range(Filas):
-        for j in range(Columnas):
-            print(f'Dato {i},{j}=',matriz[i][j])
+    for fila in matriz:
+        print(fila)
 
-#estas lineas hacen funcionar el codigo:
+
 Parcial2_punto1()
 Parcial2_punto2()
 Parcial2_punto3()
