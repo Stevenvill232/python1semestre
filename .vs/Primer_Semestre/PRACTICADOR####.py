@@ -1,22 +1,30 @@
 # se tiene una matriz y un vector con datos numericos 
 #formar dos listas asi: lista 1 con los numeros no comunes sin repetir 
 # lista 2 con los primos no repetidos
-import random
+
 
 def leer_vector():
     lista=[]
-    for i in range(9):
-        lista.append(random.randint(1,13))
+    cantidad_datos=int(input("Cantidad de datos de la lista: "))
+    for i in range(cantidad_datos):
+        lista.append(int(input(f'Dato({i})= ')))
     print("lista original",lista)
     return lista
 
 def leer_matriz():
     matriz=[]
-    for i in range(3):
+    filas=int(input("Cantidad de filas de la matriz: "))
+    columnas=int(input("Columnas de la matriz: "))
+    for i in range(filas):
         fila=[]
-        for j in range(4):
-            fila.append(random.randint(1,15))
+        for j in range(columnas):
+            fila.append(int(input(f'Dato({i},{j})')))
+        matriz.append(fila)
 
+    for fila in matriz:
+        print(fila)        
+    return matriz 
+   
 def primos(valor):
     c=1
     div=0
@@ -44,32 +52,30 @@ def fibonaccis(valor):
     else:
         return False    
 
-def lista_1_primos_sin_repetir(lista):
+def lista_1_no_comunes():
+    lista=leer_vector()
+    matriz=leer_matriz()
     lista_1=[]
     for i in range(len(lista)):
-        if primos(lista[i]):
-            dato= lista[i] in lista_1
-            if dato==False:
+        dato= lista[i] in matriz
+        if dato==False:
+            dato_2= lista[i] in lista_1
+            if dato_2==False:
                 lista_1.append(lista[i])
 
-    return lista_1
-
-def lista_2_fibonaccis_sin_repetir(lista):
-    lista_2=[]
-    for i in range(len(lista)):
-        if fibonaccis(lista[i]):
-            dato= lista[i] in lista_2
+    for i in range(len(matriz)):
+        for j in range(len(matriz[i])):
+            dato= matriz[i][j] in lista
             if dato==False:
-                lista_2.append(lista[i])
+                dato_2=matriz[i][j] in lista_1
+                if dato==False:
+                    lista_1.append(matriz[i][j])
 
-    return lista_2                        
+    print("Lista creada: ",lista_1)
+    return lista_1
+                
 
-
-lista=leer_vector()
-a=lista_1_primos_sin_repetir(lista)
-b=lista_2_fibonaccis_sin_repetir(lista)
-print("Lista con primos sin repetir: ",a)
-print("Lista con fibonaccis sin repetir: ",b)
+lista_1_no_comunes()
 
 
               
