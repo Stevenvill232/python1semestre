@@ -84,6 +84,7 @@ def punto_1():
         if triangulo_equilatero(lado_1, lado_2, lado_3):
             print("Triangulo equilatero")
             contar_equilateros += 1
+            
         elif triangulo_isosceles(lado_1, lado_2, lado_3):
             print("Triangulo isosceles")
             contar_isosceles += 1
