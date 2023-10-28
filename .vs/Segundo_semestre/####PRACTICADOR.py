@@ -49,38 +49,29 @@ def leer_matriz():
     return matriz    
 
 def punto_1():
-    matriz_ejemplo=
-    vector=
-    primo_1 = None
-    primo_2 = None
+    vector=leer_lista()
+    matriz=leer_matriz()
+    # Encontrar el número menor y el número mayor en la matriz
+    numero_menor = min(min(fila) for fila in matriz)
+    numero_mayor = max(max(fila) for fila in matriz)
 
-    for i in range(len(matriz_ejemplo)):
-        for j in range(len(matriz_ejemplo[0])):
-            if es_primo(matriz_ejemplo[i][j]):
-                if primo_1 is None:
-                    primo_1 = matriz_ejemplo[i][j]
-                elif primo_2 is None:
-                    primo_2 = matriz_ejemplo[i][j]
+    # Encontrar los números primos en el rango de la matriz
+    primos_en_rango = [num for num in range(numero_menor, numero_mayor + 1) if es_primo(num)]
 
-    if primo_1 is not None and primo_2 is not None:
-        i = 0
-        posicion_del_fibonacci = -1
-        while i < len(vector):
-            if fibonaccis(vector[i]):
-                if posicion_del_fibonacci != -1:
-                    print("El dato a buscar es:", vector[i, "Y su posición es:", posicion_del_fibonacci])
-                    break
-                elif vector[i] == primo_2:
-                    posicion_del_fibonacci = i
-            i += 1
+    # Encontrar el segundo Fibonacci en el vector que está en el rango de primos
+    segundo_fibonacci = None
+    posicion = -1
+    for i, valor in enumerate(vector):
+        if valor in primos_en_rango and fibonaccis(valor):
+            if segundo_fibonacci is None:
+                segundo_fibonacci = valor
+                posicion = i
 
-        if posicion_del_fibonacci == -1:
-            print("No se encontró el segundo valor Fibonacci en el vector.")
-    else:
-        print("No se encontraron primos en la matriz.")
+    print("Dato encontrado: ",segundo_fibonacci," Su posicion: ",posicion)            
 
 def punto_2():
     diccionario={3:[4,4,19],4:[13,4,4],9:[4,5,11],13:[2,4,4,8]}
+    print("Diccionario generado: ",diccionario)
     lista_valores=list(diccionario.values())
     lista_claves=list(diccionario.keys())
     si_hay_primo=0
@@ -135,6 +126,7 @@ def punto_2():
 
 def punto_3():
     diccionario = {3: [4, 4, 19], 4: [13, 4, 4], 9: [4, 5, 11], 13: [2, 4, 4, 8]}
+    print("Diccionario generado: ",diccionario)
     # Encontrar claves que son primos y claves que son Fibonacci
     claves_primos = []
     claves_fibonacci = []
@@ -167,8 +159,6 @@ def punto_3():
     print("Cadena 1 (Pares comunes):", cadena_pares_comunes)
     print("Cadena 2 (Unión de pares sin elementos comunes):", cadena_union_pares)
 
-
-punto_1()
 
                                  
 
