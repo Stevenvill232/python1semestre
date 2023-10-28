@@ -49,8 +49,8 @@ def leer_matriz():
     return matriz    
 
 def punto_1():
-    matriz_ejemplo=leer_matr
-    vector=lee
+    matriz_ejemplo=
+    vector=
     primo_1 = None
     primo_2 = None
 
