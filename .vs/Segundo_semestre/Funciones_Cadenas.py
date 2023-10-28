@@ -50,7 +50,7 @@ cadd="".join(l)#me convierte una lista a una cadena
 #print(cadd)
 #cad.replace('mundo','hola')= "hola hola" (me reemplaza mundo por hola )
 #FUNCION SPLIT:
-#split()=convierte la cadena a una listas
+#split()=dividir una cadena en palabras o una cadena es subcadenas
 #strip()=elimina caracteres especiales cono: nueva linea, tabulador, solo deja caracteres que son letras y numeros
 nueva_cadena='        Esto es una cadena      \n '
 sisas=nueva_cadena.strip()
